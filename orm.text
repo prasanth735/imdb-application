@@ -1,0 +1,31 @@
+from myapp.models import Movie
+
+Movie.objects.create(name="ozler",language="malayalam",run_time=120,genre="investigation thriller",director="mithun",year=2024,actors="jayaram,mammootty")
+
+qs=Movie.objects.all()
+
+qs=Movie.objects.get(id=5)
+
+qs=Movie.objects.filter(language="malayalam")
+
+update===========================================
+Movie.objects.filter(id=3).update(genre="thriller")
+
+exclude==========================================
+qs=Movie.objects.exclude(language="malayalam")
+
+delete======================================
+Movie.objects.filter(id=1).delete()
+
+field lookup=====================
+qs=Movie.objects.filter(year__lt=2024)
+qs=Movie.objects.filter(run_time__gte=200)
+
+<   __lt
+<=  __lte
+>   __gt
+>=  __gte
+
+list one column>>> genre ================= distinct for avoid duplicates
+
+qs=Movie.objects.all().values_list("genre",flat=True).distinct()
